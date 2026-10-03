@@ -24,6 +24,13 @@ export const Colors = {
   },
 } as const;
 
+export const Palette = {
+  accent: '#3c87f7',
+  success: '#34c759',
+  streak: '#ff9500',
+  gold: '#ffb800',
+} as const;
+
 export type ThemeColor = keyof typeof Colors.light & keyof typeof Colors.dark;
 
 export const Fonts = Platform.select({

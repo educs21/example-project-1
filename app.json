@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "example-app",
-    "slug": "example-app",
+    "name": "example-project-1",
+    "slug": "example-project-1",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -32,7 +32,9 @@
           "image": "./assets/images/splash-icon.png",
           "imageWidth": 76
         }
-      ]
+      ],
+      "expo-audio",
+      "expo-notifications"
     ],
     "experiments": {
       "typedRoutes": true,

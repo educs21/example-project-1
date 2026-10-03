@@ -1,56 +1,52 @@
-# Welcome to your Expo app 👋
+# example-project-1
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A habit tracker built around a reward loop, made with [Expo](https://expo.dev) (SDK 57), React Native and Expo Router. It runs on iOS, Android and web.
 
-## Get started
+## Features
 
-1. Install dependencies
+- **Daily and count habits**: tick off a once-a-day habit, or track one with a target of N per day.
+- **Rewards**: confetti, haptics and sounds when you complete a habit or challenge (each can be turned off in Settings).
+- **Streaks and consistency**: see how you're doing in History and Insights.
+- **Challenges**: tie a challenge to a habit. A day counts when that habit is fully done, and missing a past day fails the challenge.
+- **Reminders**: local daily notifications per habit, plus an 8 PM check-in (iOS and Android only).
+- **Offline-first**: all data is stored on the device with AsyncStorage.
 
-   ```bash
-   npm install
-   ```
-
-2. Start the app
-
-   ```bash
-   npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
+## Getting started
 
 ```bash
-npm run reset-project
+npm install
+npx expo start
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+Then press `i` (iOS simulator), `a` (Android emulator) or `w` (web), or scan the QR code with [Expo Go](https://expo.dev/go). Shortcuts also exist as `npm run ios`, `npm run android` and `npm run web`.
 
-### Other setup steps
+Web is the quickest way to iterate, but reminders and some haptics only work on a device or simulator.
 
-- To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)
-- If you'd like to set up unit testing, follow our guide on ["Unit Testing with Jest"](https://docs.expo.dev/develop/unit-testing/)
-- Learn more about the TypeScript setup in this template in our guide on ["Using TypeScript"](https://docs.expo.dev/guides/typescript/)
+## Scripts
 
-## Learn more
+| Command | What it does |
+| --- | --- |
+| `npx expo start` | Start the dev server |
+| `npm run lint` | Lint with ESLint (`eslint-config-expo`) |
+| `npx tsc --noEmit` | Typecheck (strict) |
+| `node scripts/make-sounds.js` | Regenerate `assets/sounds/*.wav` |
 
-To learn more about developing your project with Expo, look at the following resources:
+## Project structure
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+```
+src/
+  app/          Expo Router screens: onboarding + (tabs) Today, History, Insights, Settings
+  components/   UI pieces (habit card, habit form, celebration overlay, ...)
+  hooks/        use-habits (state provider), theme and color-scheme hooks
+  lib/          Pure habit logic, rewards feedback, notifications, confirm helper
+  constants/    Theme tokens (colors, spacing, palette)
+assets/         Images and generated sounds
+```
 
-## Join the community
+State lives in a single `HabitsProvider` (`src/hooks/use-habits.tsx`) persisted to AsyncStorage. Domain rules such as streaks, consistency and challenge status are pure functions in `src/lib/habit-logic.ts`.
 
-Join our community of developers creating universal apps.
+See [CLAUDE.md](CLAUDE.md) and [AGENTS.md](AGENTS.md) for more detailed development notes.
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## License
+
+[MIT](LICENSE)
