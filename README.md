@@ -1,4 +1,4 @@
-# example-project-1
+# Habit Tracker
 
 A habit tracker built around a reward loop, made with [Expo](https://expo.dev) (SDK 57), React Native and Expo Router. It runs on iOS, Android and web.
 
